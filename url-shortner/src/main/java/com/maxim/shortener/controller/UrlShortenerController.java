@@ -1,10 +1,12 @@
-package com.maxim.shortner.controller;
+package com.maxim.shortener.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UrlShortnerController {
+@RequestMapping("/shortener")
+public class UrlShortenerController {
     @GetMapping("/test")
     public String generate() {
         return "test";

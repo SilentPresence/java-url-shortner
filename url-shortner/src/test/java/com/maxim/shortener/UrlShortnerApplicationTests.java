@@ -1,4 +1,4 @@
-package com.maxim.shortner;
+package com.maxim.shortener;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
