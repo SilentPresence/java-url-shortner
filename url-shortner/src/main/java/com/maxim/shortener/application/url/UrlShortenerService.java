@@ -12,9 +12,13 @@ import com.maxim.shortener.infrastructure.model.ShortenedUrl;
 import com.maxim.shortener.infrastructure.repository.IRedirectLogRepository;
 import com.maxim.shortener.infrastructure.repository.IShortenedUrlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UrlShortenerService implements IUrlShortenerService {
@@ -43,12 +47,17 @@ public class UrlShortenerService implements IUrlShortenerService {
     }
 
     @Override
+    public List<ShortenedUrl> getShortUrls() {
+        return urlRepository.findAll(Sort.by("createdAt").descending());
+    }
+
+    @Override
     public String getOriginalUrl(String urlKey) {
         ShortenedUrl shortenedUrl = urlRepository.getShortenedUrlByUrlKey(urlKey);
         if (shortenedUrl == null) {
             throw new UrlKeyNotFound();
         }
-        RedirectLog log=RedirectLog.builder()
+        RedirectLog log = RedirectLog.builder()
                 .ip(ipGetter.getCurrentUserIp())
                 .shortenedUrl(shortenedUrl).build();
         logRepository.save(log);

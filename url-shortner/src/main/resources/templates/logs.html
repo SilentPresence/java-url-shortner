@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        layout:decorate="~{layout/main}">
+<body>
+<div layout:fragment="content">
+    <table class="table table-bordered" style="width: 100%">
+        <thead>
+        <tr>
+            <th>Url</th>
+            <th>User Id</th>
+            <th>IP</th>
+            <th>Redirection date (UTC)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${logs.empty}">
+            <td colspan="2"> No Url Available</td>
+        </tr>
+        <tr th:each="log : ${logs}">
+            <td th:text="${log.shortenedUrl.url}">Url</td>
+            <td th:text="${log.shortenedUrl.userId}">User Id</td>
+            <td th:text="${log.ip}">User IP</td>
+            <td th:text="${#dates.format(log.redirectedAt, 'yyyy.MM.dd HH:mm:ss')}">Redirection date</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

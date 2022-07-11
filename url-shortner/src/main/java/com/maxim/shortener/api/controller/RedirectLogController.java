@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/logs")
+@RequestMapping("/events")
 public class RedirectLogController {
     @Autowired
     IRedirectLogService redirectLogService;
