@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  mysqldb:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: db
+      MYSQL_USER: test123
+      MYSQL_PASSWORD: test123
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - backend
+  app:
+    depends_on:
+      - mysqldb
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8080:8080"
+    environment: # Pass environment variables to the service
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/db?useSSL=false
+      SPRING_DATASOURCE_USERNAME: test123
+      SPRING_DATASOURCE_PASSWORD: test123
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - backend
+volumes:
+  db:
+# Networks to be created to facilitate communication between containers
+networks:
+  backend:
