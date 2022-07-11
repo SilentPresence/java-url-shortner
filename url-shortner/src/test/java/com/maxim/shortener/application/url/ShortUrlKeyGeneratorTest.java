@@ -1,4 +1,4 @@
-package com.maxim.shortener.bl;
+package com.maxim.shortener.application.url;
 
 import com.maxim.shortener.domain.url.generator.IShortUrlKeyGenerator;
 import com.maxim.shortener.application.url.generator.ShortUrlKeyGenerator;

@@ -5,6 +5,7 @@ import com.maxim.shortener.domain.url.IUrlShortenerService;
 import com.maxim.shortener.domain.url.generator.IShortUrlKeyGenerator;
 import com.maxim.shortener.domain.url.validator.UrlValidatorUtils;
 import com.maxim.shortener.api.dto.GenerateShortUrlRequest;
+import com.maxim.shortener.exceptions.BadRequestException;
 import com.maxim.shortener.exceptions.InvalidUrlToShortenException;
 import com.maxim.shortener.exceptions.UrlKeyNotFound;
 import com.maxim.shortener.infrastructure.model.RedirectLog;
@@ -33,8 +34,14 @@ public class UrlShortenerService implements IUrlShortenerService {
 
     @Override
     public String generateShortUrl(GenerateShortUrlRequest request) {
+        if (request.url() == null) {
+            throw new BadRequestException("Url is required");
+        }
         if (!UrlValidatorUtils.isValid(request.url())) {
             throw new InvalidUrlToShortenException();
+        }
+        if (request.userId() == null) {
+            throw new BadRequestException("User id is required");
         }
         String newUrlKey = urlKeyGenerator.generateShortUrlKey(request.url(), request.userId(), new Date().getTime());
         ShortenedUrl shortenedUrl = ShortenedUrl.builder()
