@@ -1,7 +1,7 @@
 package com.maxim.shortener.application.url;
 
-import com.maxim.shortener.domain.url.generator.IShortUrlKeyGenerator;
 import com.maxim.shortener.application.url.generator.ShortUrlKeyGenerator;
+import com.maxim.shortener.domain.url.generator.IShortUrlKeyGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,6 +30,7 @@ class ShortUrlKeyGeneratorTest {
         String key2 = generator.generateShortUrlKey("https://www.yahoo.com", "silent");
         assertNotEquals(key1, key2);
     }
+
     @Test
     void shouldGenerateSameKeyWhenAllSame() {
         IShortUrlKeyGenerator generator = new ShortUrlKeyGenerator();
@@ -37,6 +38,7 @@ class ShortUrlKeyGeneratorTest {
         String key2 = generator.generateShortUrlKey("https://www.google.com", "silent", 1);
         assertEquals(key1, key2);
     }
+
     @Test
     void shouldGenerateDifferentKeyWhenDifferentTimestamp() {
         IShortUrlKeyGenerator generator = new ShortUrlKeyGenerator();
