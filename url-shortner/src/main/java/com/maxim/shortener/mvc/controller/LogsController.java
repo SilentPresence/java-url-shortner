@@ -1,7 +1,6 @@
 package com.maxim.shortener.mvc.controller;
 
 import com.maxim.shortener.domain.logs.IRedirectLogService;
-import com.maxim.shortener.domain.url.IUrlShortenerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

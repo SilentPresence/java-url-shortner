@@ -1,10 +1,10 @@
 package com.maxim.shortener.application.url;
 
+import com.maxim.shortener.api.dto.GenerateShortUrlRequest;
 import com.maxim.shortener.domain.ip.IIpGetter;
 import com.maxim.shortener.domain.url.IUrlShortenerService;
 import com.maxim.shortener.domain.url.generator.IShortUrlKeyGenerator;
 import com.maxim.shortener.domain.url.validator.UrlValidatorUtils;
-import com.maxim.shortener.api.dto.GenerateShortUrlRequest;
 import com.maxim.shortener.exceptions.BadRequestException;
 import com.maxim.shortener.exceptions.InvalidUrlToShortenException;
 import com.maxim.shortener.exceptions.UrlKeyNotFound;
@@ -16,10 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UrlShortenerService implements IUrlShortenerService {

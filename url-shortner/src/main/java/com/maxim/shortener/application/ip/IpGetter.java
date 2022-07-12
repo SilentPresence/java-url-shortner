@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 
 @Service
 public class IpGetter implements IIpGetter {
-    @Autowired HttpServletRequest request;
+    @Autowired
+    HttpServletRequest request;
+
     @Override
     public String getCurrentUserIp() {
         return request.getRemoteAddr();

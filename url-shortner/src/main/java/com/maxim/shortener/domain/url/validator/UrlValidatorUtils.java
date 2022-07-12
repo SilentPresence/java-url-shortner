@@ -8,6 +8,7 @@ public class UrlValidatorUtils {
 
     /**
      * Checks if a url is valid
+     *
      * @param url a url
      * @return whether the url is valid
      */

@@ -29,7 +29,8 @@ public class GenerateShortUrlFormData {
     public void setUrl(String url) {
         this.url = url;
     }
-    public GenerateShortUrlRequest toRequest(){
-        return new GenerateShortUrlRequest(this.userId,this.url);
+
+    public GenerateShortUrlRequest toRequest() {
+        return new GenerateShortUrlRequest(this.userId, this.url);
     }
 }
